@@ -4,6 +4,9 @@
 
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <style>
+        .slider-img{width: 150px;height: auto;}
+    </style>
 @endpush
 
 @section('content')
@@ -12,14 +15,14 @@
             <div class="row">
                 <div class="col-md-12">
                     @include('layouts.partials.msg')
-                    <a href="{{route('slider.create')}}" class="btn btn-info">Add Slider</a>
+                    <a href="{{route('slider.create')}}" class="btn btn-primary">Add Slider</a>
                     <div class="card">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title ">All Slider</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="table" class="table table-striped table-bordered">
+                                <table id="table" class="table table-striped">
                                     <thead class=" text-primary">
                                     <th>
                                         ID
@@ -54,7 +57,7 @@
                                             {{$slider->sub_title}}
                                         </td>
                                         <td>
-                                            <img src="{{$slider->image}}" alt="{{$slider->title}}" />
+                                            <img class="slider-img" src="/uploads/slider/{{$slider->image}}" alt="{{$slider->title}}" />
                                         </td>
                                         <td>
                                             {{$slider->created_at}}
@@ -63,8 +66,19 @@
                                             {{$slider->updated_at}}
                                         </td>
                                         <td>
-                                            <a href="{{route('slider.edit',$slider->id)}}" class="btn btn-info btn-sm">Edit</a>
-                                             <a href="">Delete</a>
+                                            <a href="{{route('slider.edit',$slider->id)}}" class="btn btn-info btn-sm"><i class="material-icons">mode_edit</i></a>
+                                            <form id="delete-form-{{$slider->id}}" action="{{route('slider.destroy', $slider->id)}}" style="display: none;" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                            <button type="button" class="btn btn-danger btn-sm"
+                                                    onclick="if(confirm('Are you sure to delete?')){
+                                                    event.preventDefault();
+                                                    document.getElementById('delete-form-{{$slider->id}}').submit();
+                                                }else{
+                                                    event.preventDefault();
+                                                }">
+                                                <i class="material-icons">delete</i></button>
                                         </td>
                                     </tr>
                                     @endforeach
