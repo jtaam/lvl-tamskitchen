@@ -22,7 +22,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="table" class="table table-striped">
-                                    <a href="{{route('slider.create')}}" class="btn btn-success btn-sm pull-right"><i class="material-icons">library_add</i></a>
+                                    <a href="{{route('slider.create')}}" class="btn btn-success btn-sm pull-right"><i class="material-icons">add_to_photos</i></a>
                                     <thead class=" text-primary">
                                     <th>
                                         ID
