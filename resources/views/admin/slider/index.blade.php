@@ -15,7 +15,6 @@
             <div class="row">
                 <div class="col-md-12">
                     @include('layouts.partials.msg')
-                    <a href="{{route('slider.create')}}" class="btn btn-primary">Add Slider</a>
                     <div class="card">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title ">All Slider</h4>
@@ -23,6 +22,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="table" class="table table-striped">
+                                    <a href="{{route('slider.create')}}" class="btn btn-success btn-sm pull-right"><i class="material-icons">library_add</i></a>
                                     <thead class=" text-primary">
                                     <th>
                                         ID
