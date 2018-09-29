@@ -46,7 +46,7 @@ class ItemController extends Controller
             'name'=>'required',
             'description'=>'required',
             'price'=>'required',
-            'image'=>'required|mimes:jpeg,png,bmp,jpg',
+            'image'=>'mimes:jpeg,png,bmp,jpg',
         ]);
         $image = $request->file('image');
         $slug = str_slug($request->name);
@@ -104,8 +104,40 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'category'=>'required',
+            'name'=>'required',
+            'description'=>'required',
+            'price'=>'required',
+            'image'=>'mimes:jpeg,png,bmp,jpg',
+        ]);
+
+        $item = Item::findOrFail($id);
+
+        $image = $request->file('image');
+        $slug = str_slug($request->name);
+        if (isset($image)){
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+            if (!file_exists('uploads/items')){
+                mkdir('uploads/items',0777,true);
+                unlink('uploads/items/'.$item->image); // remove old image
+            }
+
+            $image->move('uploads/items',$imagename);
+        }else{
+            $imagename = $item->image;
+        }
+        $item->category_id = $request->category;
+        $item->name=$request->name;
+        $item->description=$request->description;
+        $item->price=$request->price;
+        $item->image = $imagename;
+        $item->save();
+        return redirect()->route('item.index')->with('successMsg','Item updated successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -115,6 +147,11 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Item::findOrFail($id);
+        if (file_exists('uploads/items/'.$item->image)){
+            unlink('uploads/items/'.$item->image); // remove old image
+        }
+        $item->delete();
+        return redirect()->back()->with('successMsg','Item deleted successfully!');
     }
 }

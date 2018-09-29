@@ -4,7 +4,12 @@
 
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
-    
+    <style>
+        .item-image{
+            width: 120px;
+            height: auto;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -58,7 +63,7 @@
                                             {{$item->name}}
                                         </td>
                                         <td>
-                                            {{$item->image}}
+                                            <img src="/uploads/items/{{$item->image}}" alt="{{$item->title}}" class="item-image">
                                         </td>
                                         <td>
                                             {{$item->description}}
