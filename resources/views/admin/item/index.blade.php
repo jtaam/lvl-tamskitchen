@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
     <style>
         .item-image{
-            width: 120px;
+            width: 100px;
             height: auto;
         }
     </style>
@@ -63,7 +63,7 @@
                                             {{$item->name}}
                                         </td>
                                         <td>
-                                            <img src="/uploads/items/{{$item->image}}" alt="{{$item->title}}" class="item-image">
+                                            <img src="{{asset('/uploads/items/'.$item->image)}}" alt="{{$item->title}}" class="item-image img-responsive img-thumbnail">
                                         </td>
                                         <td>
                                             {{$item->description}}
