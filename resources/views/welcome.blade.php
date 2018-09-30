@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/flexslider.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/pricing.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap-datetimepicker.min.css')}}">
     <style>
         @foreach($sliders as $key=>$slider)
         .owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child({{$key + 1}}) .item
@@ -38,7 +39,11 @@
         });
     </script>
 
-
+    <style>
+        .flex-direction-nav li a {
+            background: url({{asset('frontend/images/a17.png')}}) no-repeat 0 0;
+        }
+    </style>
 </head>
 <body data-spy="scroll" data-target="#template-navbar">
 
@@ -648,7 +653,7 @@
                                         <input type="tel" class="form-control reserve-form empty iconified" name="phone" id="phone" required="required" placeholder="  &#xf095;  Phone">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control reserve-form empty iconified" name="datepicker" id="datepicker" required="required" placeholder="&#xf017;  Time">
+                                        <input type="text" class="form-control reserve-form empty iconified" name="datepicker" id="datetimepicker1" required="required" placeholder="&#xf017;  Time">
                                     </div>
                                 </div>
 
@@ -793,6 +798,17 @@
 <script src="{{asset('frontend/js/jquery.hoverdir.js')}}" type="text/javascript"></script>
 <script src="{{asset('frontend/js/jQuery.scrollSpeed.js')}}" type="text/javascript"></script>
 <script src="{{asset('frontend/js/script.js')}}"></script>
+<script src="{{asset('frontend/js/bootstrap-datetimepicker.min.js')}}"></script>
+<script>
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            format: "dd MM yyyy - hh:ii",
+            showMeridian: true,
+            autoclose:true,
+            todayBtn:true,
+        });
+    })
+</script>
 
 
 </body>
