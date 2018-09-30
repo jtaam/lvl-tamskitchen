@@ -71,12 +71,7 @@
                     <p>Notifications</p>
                 </a>
             </li>
-            <!-- <li class="nav-item active-pro ">
-                  <a class="nav-link" href="./upgrade.html">
-                      <i class="material-icons">unarchive</i>
-                      <p>Upgrade to PRO</p>
-                  </a>
-              </li> -->
+
         </ul>
     </div>
 </div>

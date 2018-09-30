@@ -51,9 +51,10 @@
     <script src="{{asset('backend/js/core/jquery.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('backend/js/core/popper.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('backend/js/core/bootstrap-material-design.min.js')}}" type="text/javascript"></script>
+
     <script src="{{asset('backend/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
     <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    {{--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>--}}
     <!-- Chartist JS -->
     <script src="{{asset('backend/js/plugins/chartist.min.js')}}"></script>
     <!--  Notifications Plugin    -->
@@ -69,6 +70,8 @@
 
         });
     </script>
+
+    {!! Toastr::message() !!}
 @stack('scripts')
 </body>
 </html>

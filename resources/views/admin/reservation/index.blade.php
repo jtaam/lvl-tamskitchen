@@ -72,19 +72,34 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-info btn-sm"><i class="material-icons">mode_edit</i></a>
-                                            <form id="delete-form-{{$reservation->id}}" action="" style="display: none;" method="post">
+                                            @if($reservation->status == false)
+                                            <form id="status-form-{{$reservation->id}}" action="{{route('reservation.status',$reservation->id)}}" style="display: none;" method="post">
                                                 @csrf
-                                                @method('DELETE')
                                             </form>
-                                            <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="if(confirm('Are you sure to delete?')){
-                                                    event.preventDefault();
-                                                    document.getElementById('delete-form-{{$reservation->id}}').submit();
-                                                }else{
-                                                    event.preventDefault();
-                                                }">
-                                                <i class="material-icons">delete</i></button>
+                                            <button type="button" class="btn btn-info btn-sm"
+                                                    onclick="if(confirm('Confirm this reservation request?')){
+                                                            event.preventDefault();
+                                                            document.getElementById('status-form-{{$reservation->id}}').submit();
+                                                            }else{
+                                                            event.preventDefault();
+                                                            }">
+                                                <i class="material-icons">done</i></button>
+                                            @endif
+
+                                            @if($reservation->status == true)
+                                                <form id="delete-form-{{$reservation->id}}" action="{{route('reservation.destroy',$reservation->id)}}" style="display: none;" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                        onclick="if(confirm('Are you sure to delete?')){
+                                                        event.preventDefault();
+                                                        document.getElementById('delete-form-{{$reservation->id}}').submit();
+                                                    }else{
+                                                        event.preventDefault();
+                                                    }">
+                                                    <i class="material-icons">delete</i></button>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
