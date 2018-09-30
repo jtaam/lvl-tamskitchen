@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/pricing.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap-datetimepicker.min.css')}}">
+    <link rel="stylesheet" href="http://127.0.0.1:8888/public/cdn/bootstrap-toastr/css/toastr.min.css">
     <style>
         @foreach($sliders as $key=>$slider)
         .owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child({{$key + 1}}) .item
@@ -26,6 +27,7 @@
             /*background-position: bottom;*/
         }
         @endforeach
+
     </style>
 
     <script src="{{asset('frontend/js/jquery-1.11.2.min.js')}}"></script>
@@ -637,28 +639,29 @@
             <div class=" section-content">
                 <div class="row">
                     <div class="col-md-5 col-sm-6">
-                        <form class="reservation-form" method="post" action="reserve.php">
+                        <form class="reservation-form" method="post" action="{{route('reservation.reserve')}}">
                             <div class="row">
+                                @csrf
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control reserve-form empty iconified" name="name" id="name" required="required" placeholder="  &#xf007;  Name">
+                                        <input type="text" class="form-control reserve-form empty iconified" name="name" id="name" placeholder="  &#xf007;  Name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control reserve-form empty iconified" id="email" required="required" placeholder="  &#xf1d8;  e-mail">
+                                        <input type="email" name="email" class="form-control reserve-form empty iconified" id="email"  placeholder="  &#xf1d8;  e-mail">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <input type="tel" class="form-control reserve-form empty iconified" name="phone" id="phone" required="required" placeholder="  &#xf095;  Phone">
+                                        <input type="tel" class="form-control reserve-form empty iconified" name="phone" id="phone"  placeholder="  &#xf095;  Phone">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control reserve-form empty iconified" name="datepicker" id="datetimepicker1" required="required" placeholder="&#xf017;  Time">
+                                        <input type="text" class="form-control reserve-form empty iconified" name="dateandtime" id="datetimepicker1"  placeholder="&#xf017;  Time">
                                     </div>
                                 </div>
 
                                 <div class="col-md-12 col-sm-12">
-                                    <textarea type="text" name="message" class="form-control reserve-form empty iconified" id="message" rows="3" required="required" placeholder="  &#xf086;  We're listening"></textarea>
+                                    <textarea type="text" name="message" class="form-control reserve-form empty iconified" id="message" rows="3"  placeholder="  &#xf086;  We're listening"></textarea>
                                 </div>
 
                                 <div class="col-md-12 col-sm-12">
@@ -799,6 +802,7 @@
 <script src="{{asset('frontend/js/jQuery.scrollSpeed.js')}}" type="text/javascript"></script>
 <script src="{{asset('frontend/js/script.js')}}"></script>
 <script src="{{asset('frontend/js/bootstrap-datetimepicker.min.js')}}"></script>
+<script src="http://127.0.0.1:8888/public/cdn/bootstrap-toastr/js/toastr.min.js"></script>
 <script>
     $(function () {
         $('#datetimepicker1').datetimepicker({
@@ -810,6 +814,14 @@
     })
 </script>
 
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <script>
+            toastr.error('{{$error}}');
+        </script>
+    @endforeach
+@endif
 
+{!! Toastr::message() !!}
 </body>
 </html>
