@@ -41,6 +41,12 @@
                     <p>Reservations</p>
                 </a>
             </li>
+            <li class="nav-item {{Request::is('admin/contact*') ? 'active':''}}">
+                <a class="nav-link" href="{{route('contact.index')}}">
+                    <i class="material-icons">contact_mail</i>
+                    <p>Contacts</p>
+                </a>
+            </li>
             <li class="nav-item ">
                 <a class="nav-link" href="./tables.html">
                     <i class="material-icons">content_paste</i>

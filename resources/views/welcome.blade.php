@@ -644,24 +644,24 @@
                                 @csrf
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control reserve-form empty iconified" name="name" id="name" placeholder="  &#xf007;  Name">
+                                        <input type="text" class="form-control reserve-form empty iconified" name="name" id="name" placeholder="  &#xf007;  Name" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control reserve-form empty iconified" id="email"  placeholder="  &#xf1d8;  e-mail">
+                                        <input type="email" name="email" class="form-control reserve-form empty iconified" id="email"  placeholder="  &#xf1d8;  e-mail" required="required">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <input type="tel" class="form-control reserve-form empty iconified" name="phone" id="phone"  placeholder="  &#xf095;  Phone">
+                                        <input type="tel" class="form-control reserve-form empty iconified" name="phone" id="phone"  placeholder="  &#xf095;  Phone" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control reserve-form empty iconified" name="dateandtime" id="datetimepicker1"  placeholder="&#xf017;  Time">
+                                        <input type="text" class="form-control reserve-form empty iconified" name="dateandtime" id="datetimepicker1"  placeholder="&#xf017;  Time" required="required">
                                     </div>
                                 </div>
 
                                 <div class="col-md-12 col-sm-12">
-                                    <textarea type="text" name="message" class="form-control reserve-form empty iconified" id="message" rows="3"  placeholder="  &#xf086;  We're listening"></textarea>
+                                    <textarea type="text" name="message" class="form-control reserve-form empty iconified" id="message" rows="3"  placeholder="  &#xf086;  We're listening" required="required"></textarea>
                                 </div>
 
                                 <div class="col-md-12 col-sm-12">
@@ -757,7 +757,7 @@
                                 <input name="email" type="email" class="form-control" id="email" required="required" placeholder="  Email">
                             </div>
                             <div class="form-group">
-                                <input name="subject" type="text" class="form-control" id="subject" required="required" placeholder="  Subject">
+                                <input name="subject" type="text" class="form-control" id="subject" required="required"  placeholder="  Subject">
                             </div>
                         </div>
 
