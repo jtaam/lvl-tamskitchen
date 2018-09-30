@@ -19,15 +19,15 @@ class ReservationController extends Controller
         $reservation->status = true;
         $reservation->save();
 
-        Toastr::success('Reservation confirmed succefully!','success',["positionClass"=>"toast-top-right"]);
+        Toastr::success('Reservation confirmed succefully!','Done',["positionClass"=>"toast-top-right"]);
 
         return redirect()->back();
     }
 
     public function destroy($id){
-        $reservation = Reservation::findOrFail($id)->delete();
+        Reservation::findOrFail($id)->delete();
 
-        Toastr::success('Reservation deleted succefully!','success',["positionClass"=>"toast-top-right"]);
+        Toastr::success('Reservation deleted succefully!','Done',["positionClass"=>"toast-top-right"]);
 
         return redirect()->back();
     }
