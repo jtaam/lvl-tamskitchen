@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="{{asset('frontend/css/pricing.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap-datetimepicker.min.css')}}">
-    <link rel="stylesheet" href="http://127.0.0.1:8888/public/cdn/bootstrap-toastr/css/toastr.min.css">
+    {{--<link rel="stylesheet" href="http://127.0.0.1:8888/public/cdn/bootstrap-toastr/css/toastr.min.css">--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <style>
         @foreach($sliders as $key=>$slider)
         .owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child({{$key + 1}}) .item
@@ -802,7 +803,8 @@
 <script src="{{asset('frontend/js/jQuery.scrollSpeed.js')}}" type="text/javascript"></script>
 <script src="{{asset('frontend/js/script.js')}}"></script>
 <script src="{{asset('frontend/js/bootstrap-datetimepicker.min.js')}}"></script>
-<script src="http://127.0.0.1:8888/public/cdn/bootstrap-toastr/js/toastr.min.js"></script>
+{{--<script src="http://127.0.0.1:8888/public/cdn/bootstrap-toastr/js/toastr.min.js"></script>--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
     $(function () {
         $('#datetimepicker1').datetimepicker({
