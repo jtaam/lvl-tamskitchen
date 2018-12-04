@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
         // url
         if(env('APP_ENV') !== 'local')
         {
-            $url->forceSchema('https');
+            $url->forceScheme('https');
         }
     }
 
