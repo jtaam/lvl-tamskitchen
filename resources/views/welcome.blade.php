@@ -22,7 +22,7 @@
         @foreach($sliders as $key=>$slider)
         .owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child({{$key + 1}}) .item
         {
-            background: url({{asset('uploads/slider/'.$slider->image)}});
+            background: url({{Storage::disk('/')->url('uploads/slider/'.$slider->image)}});
             background-size: cover;
             /*background-position: bottom;*/
         }
@@ -136,7 +136,7 @@
                                 <ul id="filter-list" class="clearfix">
                                     <li class="filter" data-filter="all">All</li>
                                     @foreach($categories as $category)
-                                        <li class="filter" data-filter="#{{$category->slug}}">{{$category->name}} <span class="badge">{{$category->items->count()}}</span></li>
+                                        <li class="filter" data-filter="#{{$category->slug}}">{{title_case($category->name)}} <span class="badge">{{$category->items->count()}}</span></li>
                                     @endforeach
                                 </ul><!-- @end #filter-list -->
                             </div>
