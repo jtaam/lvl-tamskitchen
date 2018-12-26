@@ -47,6 +47,7 @@
                     <p>Contacts</p>
                 </a>
             </li>
+<<<<<<< HEAD
 
             <li class="nav-item {{Request::is('admin/clodunary*') ? 'active':''}}">
                 <a class="nav-link" href="{{route('cloudinary.index')}}">
@@ -54,6 +55,8 @@
                     <p>Cloudinary</p>
                 </a>
             </li>
+=======
+>>>>>>> origin/master
 
 
 

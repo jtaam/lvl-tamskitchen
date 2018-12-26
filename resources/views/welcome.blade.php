@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="shortcut icon" href="images/star.png" type="favicon/ico" /> -->
 
-    <title>Mamma's Kitchen</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/font-awesome.min.css')}}">
@@ -17,12 +17,12 @@
     <link rel="stylesheet" href="{{asset('frontend/css/pricing.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap-datetimepicker.min.css')}}">
-    <link rel="stylesheet" href="http://127.0.0.1:8888/public/cdn/bootstrap-toastr/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <style>
         @foreach($sliders as $key=>$slider)
         .owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child({{$key + 1}}) .item
         {
-            background: url({{asset('uploads/slider/'.$slider->image)}});
+            background: url({{Storage::disk('public')->url('uploads/slider/'.$slider->image)}});
             background-size: cover;
             /*background-position: bottom;*/
         }
@@ -136,7 +136,7 @@
                                 <ul id="filter-list" class="clearfix">
                                     <li class="filter" data-filter="all">All</li>
                                     @foreach($categories as $category)
-                                        <li class="filter" data-filter="#{{$category->slug}}">{{$category->name}} <span class="badge">{{$category->items->count()}}</span></li>
+                                        <li class="filter" data-filter="#{{$category->slug}}">{{title_case($category->name)}} <span class="badge">{{$category->items->count()}}</span></li>
                                     @endforeach
                                 </ul><!-- @end #filter-list -->
                             </div>
@@ -802,7 +802,8 @@
 <script src="{{asset('frontend/js/jQuery.scrollSpeed.js')}}" type="text/javascript"></script>
 <script src="{{asset('frontend/js/script.js')}}"></script>
 <script src="{{asset('frontend/js/bootstrap-datetimepicker.min.js')}}"></script>
-<script src="http://127.0.0.1:8888/public/cdn/bootstrap-toastr/js/toastr.min.js"></script>
+{{--<script src="http://127.0.0.1:8888/public/cdn/bootstrap-toastr/js/toastr.min.js"></script>--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
     $(function () {
         $('#datetimepicker1').datetimepicker({
