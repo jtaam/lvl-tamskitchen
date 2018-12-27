@@ -92,20 +92,20 @@
                             <div class="table-responsive">
                                 <table id="table" class="table table-striped">
                                     <thead class=" text-primary">
-                                    <th>
-                                        ID
-                                    </th>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th>
-                                        Phone
-                                    </th>
+                                        <th>
+                                            ID
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Phone
+                                        </th>
 
-                                    <th>
-                                        Status
-                                    </th>
-                                    <th class="text-center">Action</th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th class="text-center">Action</th>
                                     </thead>
                                     <tbody>
                                     @foreach($reservations as $key=>$reservation)

@@ -53,7 +53,7 @@
 
     <script src="{{asset('backend/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
     <!--  Google Maps Plugin    -->
-    {{--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>--}}
+    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
     <!-- Chartist JS -->
     <script src="{{asset('backend/js/plugins/chartist.min.js')}}"></script>
     <!--  Notifications Plugin    -->

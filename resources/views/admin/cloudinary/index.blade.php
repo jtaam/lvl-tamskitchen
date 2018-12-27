@@ -22,7 +22,7 @@
                                         <strong>Cloud Name: {{$cloudinary->cloud_name}}</strong><br>
                                         <strong>API_KEY: {{$cloudinary->api_key}}</strong><br>
                                         <strong>API SECRET: Invisible</strong><br>
-                                        <strong>Media URL: <a href="{{$cloudinary->media_url}}">Visit Media URL</a></strong><br>
+                                        <strong>Media URL: <a href="{{$cloudinary->media_url}}" target="_blank">Visit Media URL</a></strong><br>
                                         <strong>Created At: {{$cloudinary->created_at}}</strong><hr>
                                         <br>
                                         <a href="{{route('cloudinary.edit', $cloudinary->id)}}" class="btn btn-info">Edit</a>

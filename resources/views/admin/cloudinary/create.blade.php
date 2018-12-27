@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Category Create')
+@section('title','Cloudinary Create')
 
 @push('css')
 

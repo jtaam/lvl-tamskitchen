@@ -38,4 +38,6 @@ Route::group(['prefix'=>'admin','middleware'=>'auth','namespace'=>'admin'], func
     Route::delete('contact/{id}','ContactController@destroy')->name('contact.destroy');
     // Cloudinary
     Route::resource('cloudinary', 'CloudinaryController');
+    // Google Map
+    Route::resource('map', 'GoogleMapController');
 });

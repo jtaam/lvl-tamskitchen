@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\GoogleMap;
 use App\Item;
 use Illuminate\Http\Request;
 use App\Slider;
@@ -29,6 +30,7 @@ class HomeController extends Controller
         $sliders = Slider::all();
         $categories = Category::all();
         $items = Item::all();
-        return view('welcome', compact('sliders','categories','items'));
+        $map = GoogleMap::all()->first();
+        return view('welcome', compact('sliders','categories','items','map'));
     }
 }

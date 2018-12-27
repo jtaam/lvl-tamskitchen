@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Category;
 use App\Contact;
+use App\GoogleMap;
 use App\Item;
 use App\Reservation;
 use App\Slider;
@@ -18,6 +19,7 @@ class DashboardController extends Controller
         $slidersCount = Slider::count();
         $reservations = Reservation::where('status',false)->get();
         $contactsCount = Contact::count();
+//        $map = GoogleMap::all()->first();
         return view('admin.dashboard',compact('categoryCount','itemsCount','slidersCount','reservations','contactsCount'));
     }
 }
