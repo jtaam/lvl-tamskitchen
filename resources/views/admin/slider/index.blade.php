@@ -57,7 +57,13 @@
                                             {{$slider->sub_title}}
                                         </td>
                                         <td>
-                                            <img class="slider-img" src="/uploads/slider/{{$slider->image}}" alt="{{$slider->title}}" />
+                                          <img class="slider-img"
+                                          @if (config('app.env')=='local')
+                                            src="/uploads/slider/{{$slider->image}}"
+                                          @else
+                                            src="{{$slider->image}}"
+                                          @endif
+                                            alt="{{$slider->title}}" />
                                         </td>
                                         <td>
                                             {{$slider->created_at}}
