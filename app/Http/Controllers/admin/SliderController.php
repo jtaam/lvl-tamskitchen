@@ -57,8 +57,8 @@ class SliderController extends Controller
         if (isset($image)){
             $currentDate = Carbon::now()->toDateString();
             // LOCAL ENV
-            if (config('app.env') == 'production') {
-//            if (config('app.env') == 'local') {
+            // if (config('app.env') == 'production') {
+           if (config('app.env') == 'local') {
 
                 $imagename = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
                 if (!file_exists('uploads/slider')) {
@@ -67,8 +67,8 @@ class SliderController extends Controller
                 $image->move('uploads/slider', $imagename);
             }
             // PRODUCTION ENV
-             if (config('app.env') == 'local') {
-//            if (config('app.env') == 'production'){
+             // if (config('app.env') == 'local') {
+           if (config('app.env') == 'production'){
                 $imagename = $slug . '-' . $currentDate . '-' . uniqid();
 
                 $cloudinary_data = null;
@@ -91,12 +91,12 @@ class SliderController extends Controller
         $slider->title = $request->title;
         $slider->sub_title = $request->sub_title;
 
-        if (config('app.env') == 'production') {
-//        if (config('app.env') == 'local') {
+        // if (config('app.env') == 'production') {
+       if (config('app.env') == 'local') {
             $slider->image = $imagename;
         }
-        if (config('app.env') == 'local') {
-//        if (config('app.env') == 'production') {
+        // if (config('app.env') == 'local') {
+       if (config('app.env') == 'production') {
             $slider->image = $cloudinary_data['secure_url'];
             $slider->public_id = $cloudinary_data['public_id'];
         }
