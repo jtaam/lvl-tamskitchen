@@ -22,7 +22,6 @@
 <script src="{{asset('frontend/js/jQuery.scrollSpeed.js')}}" type="text/javascript"></script>
 <script src="{{asset('frontend/js/script.js')}}"></script>
 <script src="{{asset('frontend/js/bootstrap-datetimepicker.min.js')}}"></script>
-{{--<script src="http://127.0.0.1:8888/public/cdn/bootstrap-toastr/js/toastr.min.js"></script>--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
     $(function () {
