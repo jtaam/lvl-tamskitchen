@@ -92,8 +92,6 @@ class ItemController extends Controller
       $imagename = 'default.png';
     }
 
-
-
     $item = new Item();
     $item->category_id = $request->category;
     $item->name=$request->name;
@@ -191,9 +189,17 @@ class ItemController extends Controller
   public function destroy($id)
   {
     $item = Item::findOrFail($id);
-    if (file_exists('uploads/items/'.$item->image)){
-      unlink('uploads/items/'.$item->image); // remove old image
+    // LOCAL ENV
+    if (config('app.env') == 'local') {
+      if (file_exists('uploads/items/'.$item->image)){
+        unlink('uploads/items/'.$item->image); // remove old image
+      }
     }
+    // PRODUCTION ENV
+    if (config('app.env') == 'production') {
+        // cloudinary
+        Cloudinary\Uploader::destroy($item->public_id);
+    }    
     $item->delete();
     return redirect()->back()->with('successMsg','Item deleted successfully!');
   }
