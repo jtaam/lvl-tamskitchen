@@ -63,7 +63,13 @@
                                             {{$item->name}}
                                         </td>
                                         <td>
-                                            <img src="{{asset('/uploads/items/'.$item->image)}}" alt="{{$item->title}}" class="item-image img-responsive img-thumbnail">
+                                            <img
+                                            @if (config('app.env')=='local')
+                                              src="{{asset('/uploads/items/'.$item->image)}}"
+                                            @else
+                                              src="{{$item->image}}"
+                                            @endif
+                                            alt="{{$item->title}}" class="item-image img-responsive img-thumbnail">
                                         </td>
                                         <td>
                                             {{$item->description}}

@@ -81,8 +81,8 @@ class ItemController extends Controller
         array(
           "folder" => "laravel/tamskitchen/items/",
           "public_id" => $imagename,
-          "width" => 1800,
-          "height" => 991,
+          "width" => 369,
+          "height" => 300,
           "overwrite" => TRUE,
           "resource_type" => "image")
         );
@@ -109,7 +109,7 @@ class ItemController extends Controller
    if (config('app.env') == 'production') {
         $item->image = $cloudinary_data['secure_url'];
         $item->public_id = $cloudinary_data['public_id'];
-    }    
+    }
     $item->save();
     return redirect()->route('item.index')->with('successMsg','Item added successfully!');
   }
