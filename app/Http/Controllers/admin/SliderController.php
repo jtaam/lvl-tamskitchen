@@ -148,18 +148,50 @@ class SliderController extends Controller
         $slider = Slider::findOrFail($id);
         if (isset($image)){
             $currentDate = Carbon::now()->toDateString();
+          // LOCAL ENV
+          if (config('app.env') == 'local') {
             $imagename = $slug .'-'. $currentDate .'-'. uniqid() . '.' .$image->getClientOriginalExtension();
             if (!file_exists('uploads/slider')){
                 mkdir('uploads/slider',0777,true);
             }
             $image->move('uploads/slider',$imagename);
+          }
+          // PRODUCTION ENV
+          if (config('app.env') == 'production') {
+            $imagename = $slug . '-' . $currentDate . '-' . uniqid();
+            // cloudinary
+            if (Cloudinary\Uploader::destroy($slider->public_id)) {
+                $cloudinary_data = null;
+                $cloudinary_data = Cloudinary\Uploader::upload($request->image,
+                    array(
+                        "folder" => "laravel/tamskitchen/top-sliders/",
+                        "public_id" => $imagename,
+                        "width" => 1800,
+                        "height" => 991,
+                        "overwrite" => TRUE,
+                        "resource_type" => "image"
+                      )
+                    );
+            } else {
+                Toastr::error('Slider update failed!', 'Error');
+                return redirect()->route('slider.index');
+            }
+          }
         }else{
             $imagename = $slider->image;
         }
 
         $slider->title = $request->title;
         $slider->sub_title = $request->sub_title;
-        $slider->image = $imagename;
+        // if (config('app.env') == 'production') {
+       if (config('app.env') == 'local') {
+            $slider->image = $imagename;
+        }
+        // if (config('app.env') == 'local') {
+       if (config('app.env') == 'production') {
+            $slider->image = $cloudinary_data['secure_url'];
+            $slider->public_id = $cloudinary_data['public_id'];
+        }
         $slider->update();
         return redirect()->route('slider.index')->with('successMsg','Slider successfully updated.');
     }
@@ -173,8 +205,16 @@ class SliderController extends Controller
     public function destroy($id)
     {
         $slider = Slider::findOrFail($id);
-        if (file_exists('uploads/slider'.$slider->image)){
-            unlink('uploads/slider/'.$slider->image);
+        // LOCAL ENV
+        if (config('app.env') == 'local') {
+          if (file_exists('uploads/slider'.$slider->image)){
+              unlink('uploads/slider/'.$slider->image);
+          }
+        }
+        // PRODUCTION ENV
+        if (config('app.env') == 'production') {
+            // cloudinary
+            Cloudinary\Uploader::destroy($slider->public_id);
         }
         $slider->delete();
         return redirect()->back()->with('successMsg','Slider successfully deleted!');
