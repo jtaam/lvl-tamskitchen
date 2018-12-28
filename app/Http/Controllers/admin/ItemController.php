@@ -99,14 +99,14 @@ class ItemController extends Controller
     $item->price=$request->price;
     // LOCAL ENV
     // if (config('app.env') == 'production') {
-   if (config('app.env') == 'local') {
-        $item->image = $imagename;
+    if (config('app.env') == 'local') {
+      $item->image = $imagename;
     }
     // PRODUCTION ENV
     // if (config('app.env') == 'local') {
-   if (config('app.env') == 'production') {
-        $item->image = $cloudinary_data['secure_url'];
-        $item->public_id = $cloudinary_data['public_id'];
+    if (config('app.env') == 'production') {
+      $item->image = $cloudinary_data['secure_url'];
+      $item->public_id = $cloudinary_data['public_id'];
     }
     $item->save();
     return redirect()->route('item.index')->with('successMsg','Item added successfully!');
@@ -159,48 +159,81 @@ class ItemController extends Controller
     $slug = str_slug($request->name);
     if (isset($image)){
       $currentDate = Carbon::now()->toDateString();
-      $imagename = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+      // LOCAL ENV
+      if (config('app.env') == 'local') {
+        $imagename = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
 
-      if (!file_exists('uploads/items')){
-        mkdir('uploads/items',0777,true);
-        unlink('uploads/items/'.$item->image); // remove old image
+        if (!file_exists('uploads/items')){
+          mkdir('uploads/items',0777,true);
+          unlink('uploads/items/'.$item->image); // remove old image
+        }
+
+        $image->move('uploads/items',$imagename);
       }
-
-      $image->move('uploads/items',$imagename);
-    }else{
-      $imagename = $item->image;
-    }
-    $item->category_id = $request->category;
-    $item->name=$request->name;
-    $item->description=$request->description;
-    $item->price=$request->price;
-    $item->image = $imagename;
-    $item->save();
-    return redirect()->route('item.index')->with('successMsg','Item updated successfully!');
-  }
-
-
-  /**
-  * Remove the specified resource from storage.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function destroy($id)
-  {
-    $item = Item::findOrFail($id);
-    // LOCAL ENV
-    if (config('app.env') == 'local') {
-      if (file_exists('uploads/items/'.$item->image)){
-        unlink('uploads/items/'.$item->image); // remove old image
-      }
-    }
-    // PRODUCTION ENV
-    if (config('app.env') == 'production') {
+      // PRODUCTION ENV
+      if (config('app.env') == 'production') {
+        $imagename = $slug . '-' . $currentDate . '-' . uniqid();
         // cloudinary
-        Cloudinary\Uploader::destroy($item->public_id);
-    }    
-    $item->delete();
-    return redirect()->back()->with('successMsg','Item deleted successfully!');
+        if (Cloudinary\Uploader::destroy($item->public_id)) {
+          $cloudinary_data = null;
+          $cloudinary_data = Cloudinary\Uploader::upload($request->image,
+          array(
+            "folder" => "laravel/tamskitchen/items/",
+            "public_id" => $imagename,
+            "width" => 369,
+            "height" => 300,
+            "overwrite" => TRUE,
+            "resource_type" => "image"
+          )
+        );
+      }
+    }
+
+  }else{
+    $imagename = $item->image;
   }
+  $item->category_id = $request->category;
+  $item->name=$request->name;
+  $item->description=$request->description;
+  $item->price=$request->price;
+  // LOCAL ENV
+  // if (config('app.env') == 'production') {
+  if (config('app.env') == 'local') {
+    $item->image = $imagename;
+  }
+  // PRODUCTION ENV
+  // if (config('app.env') == 'local') {
+  if (config('app.env') == 'production') {
+    $item->image = $cloudinary_data['secure_url'];
+    $item->public_id = $cloudinary_data['public_id'];
+  }
+
+  $item->update();
+  return redirect()->route('item.index')->with('successMsg','Item updated successfully!');
+}
+
+
+/**
+* Remove the specified resource from storage.
+*
+* @param  int  $id
+* @return \Illuminate\Http\Response
+*/
+public function destroy($id)
+{
+  $item = Item::findOrFail($id);
+  // LOCAL ENV
+  if (config('app.env') == 'local') {
+    if (file_exists('uploads/items/'.$item->image)){
+      unlink('uploads/items/'.$item->image); // remove old image
+    }
+  }
+  // PRODUCTION ENV
+  if (config('app.env') == 'production') {
+    // cloudinary
+    Cloudinary\Uploader::destroy($item->public_id);
+  }
+  $item->delete();
+  return redirect()->back()->with('successMsg','Item deleted successfully!');
+}
 }
