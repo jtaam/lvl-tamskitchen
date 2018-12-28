@@ -19,7 +19,11 @@
     <style>
         @foreach($sliders as $key=>$slider)
         .owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child({{$key + 1}}) .item {
-            background: url({{'/uploads/slider/'}}{{$slider->image}});
+            @if (config('app.env')=='local')
+              background: url({{'/uploads/slider/'}}{{$slider->image}});
+            @else
+              background: url({{$slider->image}});
+            @endif            
             background-size: cover;
             /*background-position: bottom;*/
         }
