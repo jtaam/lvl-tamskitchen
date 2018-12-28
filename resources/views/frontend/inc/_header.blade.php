@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{asset('frontend/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap-datetimepicker.min.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,400,700">
     <style>
         @foreach($sliders as $key=>$slider)
         .owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child({{$key + 1}}) .item {
@@ -23,7 +25,7 @@
               background: url({{'/uploads/slider/'}}{{$slider->image}});
             @else
               background: url({{$slider->image}});
-            @endif            
+            @endif
             background-size: cover;
             /*background-position: bottom;*/
         }
