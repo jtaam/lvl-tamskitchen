@@ -34,11 +34,11 @@
                                   @else
                                     src="{{asset('uploads/items/'.$item->image)}}"
                                   @endif
-                                   class="img-responsive" alt="{{$item->name}}" >  
+                                   class="img-responsive" alt="{{$item->name}}" >
                                     <div class="menu-desc text-center">
                                             <span>
-                                                <h3>{{$item->name}}</h3>
-                                                {{$item->description}}
+                                                <h3>{{title_case($item->name)}}</h3>
+                                                {{ucfirst($item->description)}}
                                             </span>
                                     </div>
                                 </a>

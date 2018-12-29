@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title','Login')
 
@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-1">
-                    @include('layouts.partials.msg')
+                    @include('admin.layouts.partials.msg')
                     <div class="card p-3" >
                         <div class="card-header bg-primary mb-4" data-background-color="purple">
                             <h4 class="title">Login</h4>
