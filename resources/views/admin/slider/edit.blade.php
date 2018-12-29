@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title','Slider')
 
@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    @include('layouts.partials.msg')
+                    @include('admin.layouts.partials.msg')
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
                             <h4 class="title">Update Slider</h4>

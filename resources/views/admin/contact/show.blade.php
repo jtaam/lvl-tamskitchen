@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title','Contact')
 
@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    @include('layouts.partials.msg')
+                    @include('admin.layouts.partials.msg')
                     <div class="card">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title ">Message Detail</h4>

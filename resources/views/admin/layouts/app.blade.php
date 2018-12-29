@@ -31,17 +31,17 @@
     <div id="app">
         <div class="wrapper ">
             @if(Request::is('admin*'))
-                @include('layouts.partials.sidebar')
+                @include('admin.layouts.partials.sidebar')
             @endif
             <div class="main-panel">
                 @if(Request::is('admin*'))
-                    @include('layouts.partials.topbar')
+                    @include('admin.layouts.partials.topbar')
                 @endif
 
                     @yield('content')
 
                 @if(Request::is('admin*'))
-                    @include('layouts.partials.footer')
+                    @include('admin.layouts.partials.footer')
                 @endif
             </div>
         </div>

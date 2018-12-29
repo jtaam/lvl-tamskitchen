@@ -28,7 +28,13 @@
                             <li class="item" id="{{$item->category->slug}}">
 
                                 <a href="#">
-                                    <img src="{{asset('uploads/items/'.$item->image)}}" class="img-responsive" alt="{{$item->name}}" >
+                                  <img
+                                  @if (config('app.env')=='production')
+                                    src="{{$item->image}}"
+                                  @else
+                                    src="{{asset('uploads/items/'.$item->image)}}"
+                                  @endif
+                                   class="img-responsive" alt="{{$item->name}}" >  
                                     <div class="menu-desc text-center">
                                             <span>
                                                 <h3>{{$item->name}}</h3>

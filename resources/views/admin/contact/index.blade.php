@@ -1,9 +1,18 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title','Contact')
 
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <style>
+    .table-responsive a{margin: 15px;}
+    .paginate_button{
+      cursor: pointer;
+      background: #ab47bc;
+      padding: 5px 8px;
+      color: white;
+    }
+    </style>
 @endpush
 
 @section('content')
@@ -11,7 +20,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    @include('layouts.partials.msg')
+                    @include('admin.layouts.partials.msg')
                     <div class="card">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title ">All Contact Messages</h4>
@@ -81,7 +90,7 @@
 
 @push('scripts')
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script> --}}
     <script>
         $(document).ready(function() {
             $('#table').DataTable();
